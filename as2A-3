@@ -1,0 +1,22 @@
+#include <iostream.h>
+#include <conio.h>
+
+inline int increment(int &num) {
+    return ++num;
+}
+
+inline int decrement(int &num) {
+    return --num;
+}
+
+void main() {
+    clrscr();
+    int num;
+    cout << "Enter an integer: ";
+    cin >> num;
+
+    cout << "Incremented value: " << increment(num) << endl;
+    cout << "Decremented value: " << decrement(num) << endl;
+
+    getch();
+}
