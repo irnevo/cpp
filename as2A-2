@@ -1,0 +1,27 @@
+#include <iostream.h>
+#include <conio.h>
+
+int power(int x, int y = 2) {
+    int result = 1;
+    for (int i = 1; i <= y; i++) {
+        result *= x;
+    }
+    return result;
+}
+
+void main() {
+    clrscr();
+    int x, y;
+    cout << "Enter the base (x): ";
+    cin >> x;
+    cout << "Enter the exponent (y, default is 2): ";
+    cin >> y;
+
+    if (y == 0) {
+        cout << "Result: " << power(x) << endl;
+    } else {
+        cout << "Result: " << power(x, y) << endl;
+    }
+
+    getch();
+}
