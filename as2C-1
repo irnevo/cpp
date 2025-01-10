@@ -1,0 +1,115 @@
+#include <iostream.h>
+#include <conio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct Book {
+    char title[50];
+    char* authors[10]; // Dynamic memory allocation for author names
+    int authorCount;
+    float price;
+    char publisher[50];
+    int stock;
+
+    void acceptDetails() {
+        cout << "Enter Title: ";
+        cin.getline(title, 50);
+
+        cout << "Enter Publisher: ";
+        cin.getline(publisher, 50);
+
+        cout << "Enter Price: ";
+        cin >> price;
+
+        cout << "Enter Stock: ";
+        cin >> stock;
+
+        cout << "Enter number of authors: ";
+        cin >> authorCount;
+        cin.ignore();
+
+        for (int i = 0; i < authorCount; i++) {
+            authors[i] = new char[50];
+            cout << "Enter Author " << i + 1 << ": ";
+            cin.getline(authors[i], 50);
+        }
+    }
+
+    void displayDetails() {
+        cout << "\nBook Details:\n";
+        cout << "Title: " << title << endl;
+        cout << "Publisher: " << publisher << endl;
+        cout << "Price: " << price << endl;
+        cout << "Stock: " << stock << endl;
+        cout << "Authors: ";
+        for (int i = 0; i < authorCount; i++) {
+            cout << authors[i];
+            if (i < authorCount - 1) cout << ", ";
+        }
+        cout << endl;
+    }
+
+    void sellBook(int copies) {
+        if (copies <= stock) {
+            stock -= copies;
+            cout << "Sale successful. Remaining stock: " << stock << endl;
+        } else {
+            cout << "Insufficient stock. Sale failed.\n";
+        }
+    }
+
+    void purchaseBook(int copies) {
+        stock += copies;
+        cout << "Purchase successful. Updated stock: " << stock << endl;
+    }
+
+    ~Book() {
+        for (int i = 0; i < authorCount; i++) {
+            delete[] authors[i];
+        }
+    }
+};
+
+void main() {
+    clrscr();
+    Book book;
+    int choice, copies;
+
+    while (1) {
+        cout << "\nMenu:\n";
+        cout << "1. Accept Book Details\n";
+        cout << "2. Display Book Details\n";
+        cout << "3. Sell a Book\n";
+        cout << "4. Purchase a Book\n";
+        cout << "5. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+        cin.ignore();
+
+        switch (choice) {
+            case 1:
+                book.acceptDetails();
+                break;
+            case 2:
+                book.displayDetails();
+                break;
+            case 3:
+                cout << "Enter number of copies to sell: ";
+                cin >> copies;
+                book.sellBook(copies);
+                break;
+            case 4:
+                cout << "Enter number of copies to purchase: ";
+                cin >> copies;
+                book.purchaseBook(copies);
+                break;
+            case 5:
+                cout << "Exiting program.\n";
+                exit(0);
+            default:
+                cout << "Invalid choice. Try again.\n";
+        }
+    }
+
+    getch();
+}
