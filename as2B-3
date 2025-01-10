@@ -1,0 +1,28 @@
+#include <iostream.h>
+#include <conio.h>
+#include <iomanip.h>
+
+float calculateArea(float radius = 1.0) {
+    return 3.14159 * radius * radius;
+}
+
+float calculateCircumference(float radius = 1.0) {
+    return 2 * 3.14159 * radius;
+}
+
+void main() {
+    clrscr();
+    float radius;
+
+    cout << "Enter radius of the circle (default is 1.0): ";
+    cin >> radius;
+
+    float area = calculateArea(radius);
+    float circumference = calculateCircumference(radius);
+
+    cout << "Radius: " << radius << endl;
+    cout << "Area: " << setw(10) << area << endl;
+    cout << "Circumference: " << setw(10) << circumference << endl;
+
+    getch();
+}
