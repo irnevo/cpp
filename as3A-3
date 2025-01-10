@@ -1,0 +1,51 @@
+#include <iostream.h>
+#include <conio.h>
+
+class ClassA;
+class ClassB;
+
+class ClassA {
+    float numA;
+
+public:
+    void setData(float a) {
+        numA = a;
+    }
+
+    friend float addNumbers(ClassA, ClassB);
+};
+
+class ClassB {
+    float numB;
+
+public:
+    void setData(float b) {
+        numB = b;
+    }
+
+    friend float addNumbers(ClassA, ClassB);
+};
+
+float addNumbers(ClassA objA, ClassB objB) {
+    return objA.numA + objB.numB;
+}
+
+void main() {
+    clrscr();
+    ClassA objA;
+    ClassB objB;
+
+    float a, b;
+    cout << "Enter a number for ClassA: ";
+    cin >> a;
+    cout << "Enter a number for ClassB: ";
+    cin >> b;
+
+    objA.setData(a);
+    objB.setData(b);
+
+    float result = addNumbers(objA, objB);
+    cout << "The sum of the two numbers is: " << result;
+
+    getch();
+}
