@@ -1,0 +1,58 @@
+#include <iostream.h>
+#include <conio.h>
+#include <string.h>
+
+class Employee {
+    int Emp_id;
+    char Name[50];
+    char department[30];
+    char date_of_joining[15];
+    float Salary;
+
+public:
+    void acceptDetails() {
+        cout << "Enter Employee ID: ";
+        cin >> Emp_id;
+        cin.ignore();
+        cout << "Enter Name: ";
+        cin.getline(Name, 50);
+        cout << "Enter Department: ";
+        cin.getline(department, 30);
+        cout << "Enter Date of Joining (DD/MM/YYYY): ";
+        cin.getline(date_of_joining, 15);
+        cout << "Enter Salary: ";
+        cin >> Salary;
+        cin.ignore();
+    }
+
+    void displayDetails() {
+        cout << "\nEmployee Details:\n";
+        cout << "ID: " << Emp_id << endl;
+        cout << "Name: " << Name << endl;
+        cout << "Department: " << department << endl;
+        cout << "Date of Joining: " << date_of_joining << endl;
+        cout << "Salary: " << Salary << endl;
+    }
+};
+
+void main() {
+    clrscr();
+    int n;
+    cout << "Enter number of employees: ";
+    cin >> n;
+    cin.ignore();
+
+    Employee employees[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "\nEnter details for Employee " << i + 1 << ":\n";
+        employees[i].acceptDetails();
+    }
+
+    cout << "\nDisplaying Employee Details:\n";
+    for (int i = 0; i < n; i++) {
+        employees[i].displayDetails();
+    }
+
+    getch();
+}
