@@ -1,0 +1,54 @@
+#include <iostream.h>
+#include <conio.h>
+#include <string.h>
+
+class Student {
+    int Roll_No;
+    char Student_Name[50];
+    char Class[10];
+    static int studentCount;
+
+public:
+    void acceptDetails() {
+        cout << "Enter Roll Number: ";
+        cin >> Roll_No;
+        cin.ignore();
+        cout << "Enter Student Name: ";
+        cin.getline(Student_Name, 50);
+        cout << "Enter Class: ";
+        cin.getline(Class, 10);
+        studentCount++;
+    }
+
+    void displayDetails() {
+        cout << "\nStudent Details:\n";
+        cout << "Roll Number: " << Roll_No << endl;
+        cout << "Name: " << Student_Name << endl;
+        cout << "Class: " << Class << endl;
+    }
+
+    static void displayCount() {
+        cout << "Total Students: " << studentCount << endl;
+    }
+};
+
+int Student::studentCount = 0;
+
+void main() {
+    clrscr();
+    Student s1, s2;
+
+    cout << "Enter details for Student 1:\n";
+    s1.acceptDetails();
+
+    cout << "Enter details for Student 2:\n";
+    s2.acceptDetails();
+
+    cout << "\nDisplaying Student Information:\n";
+    s1.displayDetails();
+    s2.displayDetails();
+
+    Student::displayCount();
+
+    getch();
+}
