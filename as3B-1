@@ -1,0 +1,60 @@
+#include <iostream.h>
+#include <conio.h>
+
+class Product {
+    int productID;
+    char name[50];
+    float price;
+
+public:
+    void acceptDetails() {
+        cout << "Enter Product ID: ";
+        cin >> productID;
+        cin.ignore();
+        cout << "Enter Product Name: ";
+        cin.getline(name, 50);
+        cout << "Enter Product Price: ";
+        cin >> price;
+    }
+
+    void displayDetails() {
+        cout << "Product ID: " << productID << endl;
+        cout << "Product Name: " << name << endl;
+        cout << "Product Price: " << price << endl;
+    }
+
+    float getPrice() {
+        return price;
+    }
+};
+
+void main() {
+    clrscr();
+    int n;
+    cout << "Enter the number of products: ";
+    cin >> n;
+
+    Product* products = new Product[n];
+    int maxIndex = 0;
+
+    for (int i = 0; i < n; i++) {
+        cout << "\nEnter details for Product " << i + 1 << ":\n";
+        products[i].acceptDetails();
+
+        if (products[i].getPrice() > products[maxIndex].getPrice()) {
+            maxIndex = i;
+        }
+    }
+
+    cout << "\nDisplaying all product information:\n";
+    for (int i = 0; i < n; i++) {
+        cout << "\nProduct " << i + 1 << " details:\n";
+        products[i].displayDetails();
+    }
+
+    cout << "\nProduct with the maximum price:\n";
+    products[maxIndex].displayDetails();
+
+    delete[] products;
+    getch();
+}
