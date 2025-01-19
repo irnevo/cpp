@@ -1,0 +1,60 @@
+#include <iostream.h>
+#include <conio.h>
+
+class Distance {
+    int feet;
+    int inches;
+
+public:
+    void acceptDistance() {
+        cout << "Enter feet: ";
+        cin >> feet;
+        cout << "Enter inches: ";
+        cin >> inches;
+        normalize();
+    }
+
+    void displayDistance() {
+        cout << feet << " feet " << inches << " inches" << endl;
+    }
+
+    Distance addDistance(Distance d) {
+        Distance result;
+        result.feet = feet + d.feet;
+        result.inches = inches + d.inches;
+        result.normalize();
+        return result;
+    }
+
+private:
+    void normalize() {
+        if (inches >= 12) {
+            feet += inches / 12;
+            inches = inches % 12;
+        }
+    }
+};
+
+void main() {
+    clrscr();
+    Distance d1, d2, d3;
+
+    cout << "Enter the first distance:\n";
+    d1.acceptDistance();
+
+    cout << "Enter the second distance:\n";
+    d2.acceptDistance();
+
+    d3 = d1.addDistance(d2);
+
+    cout << "\nFirst Distance: ";
+    d1.displayDistance();
+
+    cout << "Second Distance: ";
+    d2.displayDistance();
+
+    cout << "Sum of Distances: ";
+    d3.displayDistance();
+
+    getch();
+}
