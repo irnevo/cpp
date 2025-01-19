@@ -1,0 +1,93 @@
+#include <iostream.h>
+#include <conio.h>
+
+class Array1; // Forward declaration of class Array1
+
+class Array2 {
+    int arr2[50];
+    int size2;
+
+public:
+    void acceptArray() {
+        cout << "Enter the number of elements in Array2: ";
+        cin >> size2;
+        cout << "Enter elements of Array2:\n";
+        for (int i = 0; i < size2; i++) {
+            cin >> arr2[i];
+        }
+    }
+
+    void displayArray() {
+        cout << "Elements of Array2: ";
+        for (int i = 0; i < size2; i++) {
+            cout << arr2[i] << " ";
+        }
+        cout << endl;
+    }
+
+    friend int findMax(Array1, Array2);
+};
+
+class Array1 {
+    int arr1[50];
+    int size1;
+
+public:
+    void acceptArray() {
+        cout << "Enter the number of elements in Array1: ";
+        cin >> size1;
+        cout << "Enter elements of Array1:\n";
+        for (int i = 0; i < size1; i++) {
+            cin >> arr1[i];
+        }
+    }
+
+    void displayArray() {
+        cout << "Elements of Array1: ";
+        for (int i = 0; i < size1; i++) {
+            cout << arr1[i] << " ";
+        }
+        cout << endl;
+    }
+
+    friend int findMax(Array1, Array2);
+};
+
+int findMax(Array1 a1, Array2 a2) {
+    int max1 = a1.arr1[0], max2 = a2.arr2[0];
+
+    for (int i = 1; i < a1.size1; i++) {
+        if (a1.arr1[i] > max1) {
+            max1 = a1.arr1[i];
+        }
+    }
+
+    for (int i = 1; i < a2.size2; i++) {
+        if (a2.arr2[i] > max2) {
+            max2 = a2.arr2[i];
+        }
+    }
+
+    return (max1 > max2) ? max1 : max2;
+}
+
+void main() {
+    clrscr();
+    Array1 a1;
+    Array2 a2;
+
+    cout << "Enter details for Array1:\n";
+    a1.acceptArray();
+
+    cout << "Enter details for Array2:\n";
+    a2.acceptArray();
+
+    cout << "\nDisplaying arrays:\n";
+    a1.displayArray();
+    a2.displayArray();
+
+    int maxValue = findMax(a1, a2);
+    cout << "\nMaximum value among both arrays: " << maxValue;
+
+    getch();
+}
